@@ -1,11 +1,21 @@
+import ContactSection from "../components/ContactSection";
+import Header from "../components/Header";
+import HomeSection from "../components/HomeSection";
+import ProjectsSection from "../components/ProjectsSection";
+
 function HomePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-blue-600">
-        Test
-      </h1>
-    </div>
-  )
+    <>
+      <Header />
+      <div>
+        <section id="home" className="min-h-screen">{<HomeSection />}</section>
+
+        <section id="projects" className="min-h-screen">{<ProjectsSection />}</section>
+
+        <section id="contact" className="min-h-screen">{<ContactSection />}</section>
+      </div>
+    </>
+  );
 }
 
-export default HomePage
+export default HomePage;

@@ -3,9 +3,11 @@ import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <div className="hidden sm:block max-w-5xl mx-auto px-15 xl:px-0">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </div>
   )
 }
 
