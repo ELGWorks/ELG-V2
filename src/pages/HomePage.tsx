@@ -2,18 +2,28 @@ import ContactSection from "../components/ContactSection";
 import Header from "../components/Header";
 import HomeSection from "../components/HomeSection";
 import ProjectsSection from "../components/ProjectsSection";
+import { ReactLenis } from "lenis/react";
+import "lenis/dist/lenis.css";
 
 function HomePage() {
   return (
     <>
-      <Header />
-      <div>
-        <section id="home" className="min-h-screen">{<HomeSection />}</section>
+      <ReactLenis root options={{ lerp: 0.1, smoothWheel: true }}>
+        <Header />
+        <div>
+          <section id="home" className="min-h-screen">
+            {<HomeSection />}
+          </section>
 
-        <section id="projects" className="min-h-screen">{<ProjectsSection />}</section>
+          <section id="projects" className="min-h-screen">
+            {<ProjectsSection />}
+          </section>
 
-        <section id="contact" className="min-h-screen">{<ContactSection />}</section>
-      </div>
+          <section id="contact" className="min-h-screen">
+            {<ContactSection />}
+          </section>
+        </div>
+      </ReactLenis>
     </>
   );
 }
