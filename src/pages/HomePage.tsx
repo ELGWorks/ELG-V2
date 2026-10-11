@@ -12,17 +12,9 @@ function HomePage() {
       <ReactLenis root options={{ lerp: 0.1, smoothWheel: true }}>
         <Header />
 
-        <section id="home" className="min-h-screen">
           {<HomeSection />}
-        </section>
-
-        <section id="projects" className="min-h-screen">
           {<ProjectsSection />}
-        </section>
-
-        <section id="contact" className="min-h-screen">
           {<ContactSection />}
-        </section>
 
         <Footer />
       </ReactLenis>

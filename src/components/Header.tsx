@@ -33,8 +33,10 @@ function Header() {
   return (
     <header className="fixed top-8 left-0 right-0 z-50 mx-auto max-w-5xl px-15 xl:px-0">
       <div
-        className={`flex items-center overflow-hidden rounded-full border border-[#DDE3EF] bg-white py-1 h-15 text-[20px] transition-[width] duration-800 ease-in-out ${
-          isOpen ? "w-full justify-between px-6" : "w-12 justify-start px-3"
+        className={`flex items-center overflow-hidden rounded-full border border-[#DDE3EF] bg-white text-[20px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] ${
+          isOpen
+            ? "h-15 w-full justify-between p-8 mt-2"
+            : "h-16 w-16 justify-center p-8 mt-2"
         }`}
       >
         <button
@@ -49,7 +51,7 @@ function Header() {
               setTimeout(() => setShowContent(true), 1000);
             }
           }}
-          className={"flex shrink-0 cursor-pointer items-center"}
+          className="flex shrink-0 cursor-pointer items-center justify-center translate-x-2.5"
         >
           <PanelLeft size={22} />
         </button>
@@ -107,7 +109,6 @@ function Header() {
         >
           <Sun size={22} />
         </button>
-
       </div>
     </header>
   );
