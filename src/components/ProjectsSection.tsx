@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Send } from "lucide-react";
-import introImage from "../images/intro-image.webp";
+import introImage from "../assets/images/intro-image.webp";
 
 function ProjectsSection() {
   return (

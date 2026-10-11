@@ -62,7 +62,7 @@ function Header() {
           >
             <nav className="flex items-center gap-5 text-[#8D8D8D]">
               <a
-                href="#home"
+                href="/#home"
                 className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
                   activeSection === "home"
                     ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
@@ -73,7 +73,7 @@ function Header() {
               </a>
 
               <a
-                href="#projects"
+                href="/#projects"
                 className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
                   activeSection === "projects"
                     ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
@@ -84,7 +84,7 @@ function Header() {
               </a>
 
               <a
-                href="#contact"
+                href="/#contact"
                 className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
                   activeSection === "contact"
                     ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
