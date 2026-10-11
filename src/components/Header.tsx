@@ -99,7 +99,7 @@ function Header() {
 
         <button
           aria-label="Toggle theme"
-          className={`flex shrink-0 items-center transition-opacity duration-500 ease-in-out ${
+          className={`flex shrink-0 items-center transition-opacity duration-500 ease-in-out cursor-pointer ${
             isOpen && showContent
               ? "visible opacity-100"
               : "invisible opacity-0"
