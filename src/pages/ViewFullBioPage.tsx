@@ -19,14 +19,16 @@ function ViewFullBioPage() {
         id="home"
         className="flex min-h-[calc(90vh-5rem)] items-center justify-center gap-20"
       >
-        <div className="flex flex-col gap-5 text-[18px] animate-[jumpIn_0.7s_ease-out_both]">
+        <div className="flex flex-col gap-10 text-[18px] animate-[jumpIn_0.7s_ease-out_both]">
           <p>
             I graduated last August, 2025 under Computer Science. Currently, I
             am focusing on web development with the goal of building responsive
             and efficient applications.
           </p>
 
-          <p className="animate-[jumpIn_0.7s_ease-out_both] text-[18px]">Here are some technologies I have been working with:</p>
+          <p className="animate-[jumpIn_0.7s_ease-out_both] text-[18px]">
+            Here are some technologies I have been working with:
+          </p>
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-4 animate-[jumpIn_0.7s_ease-out_both] text-[18px]">
             {[
@@ -42,18 +44,17 @@ function ViewFullBioPage() {
               </div>
             ))}
           </div>
-
           <button
             aria-label="Send an email"
-            className="flex items-center gap-3 w-fit border border:black; cursor-pointer px-4 pt-3 pb-2 rounded-[50px] border border-[#257BBE] hover:bg-[#257BBE] hover:text-white transition-colors duration-600 ease-in-out text-[20px] font-bold text-[#257BBE] mt-10 animate-[jumpIn_0.7s_ease-out_both]"
+            className="flex w-fit cursor-pointer items-center gap-1.5 rounded-[50px] border border-[#257BBE] px-4 pt-2.5 pb-2.5 text-[16px] font-bold text-[#257BBE] transition-colors duration-600 ease-in-out hover:bg-[#257BBE] hover:text-white"
           >
+            <Eye size={20} />
             <a
               href={resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex gap-2 text-[18px]"
+              className="flex gap-2 text-[16px]"
             >
-              <Eye size={30} />
               Resume
             </a>
           </button>
