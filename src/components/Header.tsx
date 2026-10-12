@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { PanelLeft, Sun } from "lucide-react";
 
+const SECTIONS = [
+  { id: "home", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showContent, setShowContent] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sections = ["home", "projects", "contact"];
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -17,12 +20,10 @@ function Header() {
           }
         });
       },
-      {
-        threshold: 0.5,
-      },
+      { threshold: 0.5 },
     );
 
-    sections.forEach((id) => {
+    SECTIONS.forEach(({ id }) => {
       const section = document.getElementById(id);
       if (section) observer.observe(section);
     });
@@ -33,81 +34,54 @@ function Header() {
   return (
     <header className="fixed top-8 left-0 right-0 z-50 mx-auto max-w-5xl px-15 xl:px-0">
       <div
-        className={`flex items-center overflow-hidden rounded-full border border-[#DDE3EF] bg-white text-[20px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] ${
-          isOpen
-            ? "h-15 w-full justify-between p-8 mt-2"
-            : "h-16 w-16 justify-center p-8 mt-2"
+        className={`mt-2 flex h-12 items-center justify-between overflow-hidden rounded-full border border-[#DDE3EF] bg-white text-[18px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] ${
+          isOpen ? "w-full" : "w-12"
         }`}
       >
         <button
           aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
           aria-expanded={isOpen}
-          onClick={() => {
-            if (isOpen) {
-              setShowContent(false);
-              setIsOpen(false);
-            } else {
-              setIsOpen(true);
-              setTimeout(() => setShowContent(true), 1000);
-            }
-          }}
-          className="flex shrink-0 cursor-pointer items-center justify-center translate-x-2.5"
+          onClick={() => setIsOpen((open) => !open)}
+          className="grid size-12 shrink-0 cursor-pointer place-items-center"
         >
-          <PanelLeft size={22} />
+          <PanelLeft size={20} />
         </button>
 
-        {isOpen && (
-          <div
-            className={`flex flex-1 items-center justify-center transition-opacity duration-500 ease-in-out ${
-              showContent ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <nav className="flex items-center gap-5 text-[#8D8D8D]">
-              <a
-                href="/#home"
-                className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
-                  activeSection === "home"
-                    ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
-                    : "border-transparent text-[#8D8D8D] hover:border-[#C8C8C8] hover:bg-[#E6EFFF] hover:text-black"
-                }`}
-              >
-                Home
-              </a>
-
-              <a
-                href="/#projects"
-                className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
-                  activeSection === "projects"
-                    ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
-                    : "border-transparent text-[#8D8D8D] hover:border-[#C8C8C8] hover:bg-[#E6EFFF] hover:text-black"
-                }`}
-              >
-                Projects
-              </a>
-
-              <a
-                href="/#contact"
-                className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
-                  activeSection === "contact"
-                    ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
-                    : "border-transparent text-[#8D8D8D] hover:border-[#C8C8C8] hover:bg-[#E6EFFF] hover:text-black"
-                }`}
-              >
-                Contact
-              </a>
-            </nav>
-          </div>
-        )}
+        {/* Stays mounted; fades out instantly-ish on close, fades in after the pill has grown on open */}
+        <nav
+          aria-hidden={!isOpen}
+          className={`flex flex-1 items-center justify-center gap-5 whitespace-nowrap text-[#8D8D8D] transition-opacity duration-500 ease-in-out ${
+            isOpen
+              ? "opacity-100 delay-700"
+              : "pointer-events-none opacity-0"
+          }`}
+        >
+          {SECTIONS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`/#${id}`}
+              tabIndex={isOpen ? 0 : -1}
+              className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
+                activeSection === id
+                  ? "border-[#C8C8C8] bg-[#E6EFFF] text-black"
+                  : "border-transparent text-[#8D8D8D] hover:border-[#C8C8C8] hover:bg-[#E6EFFF] hover:text-black"
+              }`}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
 
         <button
           aria-label="Toggle theme"
-          className={`flex shrink-0 items-center transition-opacity duration-500 ease-in-out cursor-pointer ${
-            isOpen && showContent
-              ? "visible opacity-100"
-              : "invisible opacity-0"
+          tabIndex={isOpen ? 0 : -1}
+          className={`grid size-12 shrink-0 cursor-pointer place-items-center transition-opacity duration-500 ease-in-out ${
+            isOpen
+              ? "opacity-100 delay-700"
+              : "pointer-events-none opacity-0"
           }`}
         >
-          <Sun size={22} />
+          <Sun size={20} />
         </button>
       </div>
     </header>

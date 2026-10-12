@@ -43,17 +43,17 @@ function HomeSection() {
         </div>
 
         <div className="flex flex-col gap-15 animate-[jumpIn_0.7s_ease-out_0.15s_both]">
-          <p className="text-[80px] leading-none">
+          <p className="text-[65px] leading-none">
             hi, <span className="text-[#257BBE]">emman</span> here.
           </p>
 
           <div>
-            <p className="text-[21px]">
+            <p className="text-[18px]">
               Website frontend developer + AI from Pampanga, Philippines.
             </p>
             <Link
               to="/viewfullbio"
-              className="w-fit cursor-pointer text-[19px] text-[#8D8D8D] transition-colors duration-600 ease-in-out hover:text-[#257BBE] hover:underline"
+              className="w-fit cursor-pointer text-[14px] text-[#8D8D8D] transition-colors duration-600 ease-in-out hover:text-[#257BBE] hover:underline"
             >
               View Full Bio
             </Link>
@@ -61,7 +61,7 @@ function HomeSection() {
 
           <button
             aria-label="Send an email"
-            className="flex w-fit cursor-pointer items-center gap-3 rounded-[50px] border border-[#257BBE] px-8 py-5 text-[20px] font-bold text-[#257BBE] transition-colors duration-600 ease-in-out hover:bg-[#257BBE] hover:text-white"
+            className="flex w-fit cursor-pointer items-center gap-3 rounded-[50px] border border-[#257BBE] px-4 pt-3 pb-2 text-[18px] font-bold text-[#257BBE] transition-colors duration-600 ease-in-out hover:bg-[#257BBE] hover:text-white"
           >
             <Send size={30} />
             Say hi!
