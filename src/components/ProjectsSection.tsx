@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useLenis } from "lenis/react";
 
 type Project = {
   title: string;
@@ -167,6 +168,25 @@ function ProjectsSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const firstCardRef = useRef<HTMLDivElement | null>(null);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const lenis = useLenis();
+
+  // Lenis forces `scroll-behavior: auto`, so native smooth scrolling is ignored
+  // on this page. Scroll through Lenis instead, back to the centered first card.
+  const handleShowLess = () => {
+    const section = sectionRef.current;
+    const card = firstCardRef.current;
+    setExpanded(false);
+    if (!section || !card) return;
+
+    const topGap =
+      scrollOffset + parseFloat(getComputedStyle(section).paddingTop);
+
+    if (lenis) {
+      lenis.scrollTo(card, { offset: -topGap, duration: 1.2 });
+    } else {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // When navigating to #projects, land with the first card centered in the
   // viewport. If the card is taller than the screen (mobile), align its top
@@ -246,27 +266,34 @@ function ProjectsSection() {
         </div>
       )}
 
-      {expanded &&
-        restCards.map((project, i) => (
-          <Reveal key={`${project.title}-rest-${i}`}>
-            <ProjectCard project={project} />
-          </Reveal>
-        ))}
+      {/* Collapsible area: animates open and closed so "Show less" never snaps.
+          The negative top margin cancels the section's flex gap while closed. */}
+      <div
+        aria-hidden={!expanded}
+        className={`-mt-8 grid w-full transition-[grid-template-rows,opacity,visibility] duration-700 ease-in-out sm:-mt-12 ${
+          expanded
+            ? "visible grid-rows-[1fr] opacity-100"
+            : "invisible grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="flex flex-col items-center gap-8 pt-8 sm:gap-12 sm:pt-12">
+            {restCards.map((project, i) => (
+              <Reveal key={`${project.title}-rest-${i}`}>
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
 
-      {expanded && (
-        <button
-          type="button"
-          onClick={() => {
-            setExpanded(false);
-            document
-              .getElementById("projects")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className={bigButton}
-        >
-          Show less
-        </button>
-      )}
+            <button
+              type="button"
+              onClick={handleShowLess}
+              className={bigButton}
+            >
+              Show less
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
