@@ -26,11 +26,11 @@ function HomeSection() {
   return (
     <section
       id="home"
-      className="flex min-h-screen items-center justify-center"
+      className="flex min-h-screen items-center justify-center px-6 py-28 md:py-0"
     >
       <div
         ref={contentRef}
-        className={`flex items-center justify-center gap-20 transition-[opacity,transform] duration-700 ease-in-out ${
+        className={`flex flex-col items-center justify-center gap-10 transition-[opacity,transform] duration-700 ease-in-out md:flex-row md:gap-20 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
         }`}
       >
@@ -38,17 +38,17 @@ function HomeSection() {
           <img
             src={introImage}
             alt="Emman's profile"
-            className="h-115 w-90 rounded-[50px] object-cover"
+            className="h-96 w-72 rounded-[40px] object-cover md:h-115 md:w-90 md:rounded-[50px]"
           />
         </div>
 
-        <div className="flex flex-col gap-15 animate-[jumpIn_0.7s_ease-out_0.15s_both]">
-          <p className="text-[65px] leading-none">
+        <div className="flex flex-col items-center gap-8 text-center animate-[jumpIn_0.7s_ease-out_0.15s_both] md:items-start md:gap-15 md:text-left">
+          <p className="text-[44px] leading-none sm:text-[55px] md:text-[65px]">
             hi, <span className="text-[#257BBE]">emman</span> here.
           </p>
 
           <div>
-            <p className="text-[18px]">
+            <p className="text-[16px] md:text-[18px]">
               Website frontend developer + AI from Pampanga, Philippines.
             </p>
             <Link

@@ -6,31 +6,35 @@ import resume from "../assets/Gonzales_Emmanuel_Resumé.pdf";
 
 function ViewFullBioPage() {
   const navigate = useNavigate();
+
   return (
     <>
-      <button
-        onClick={() => navigate(-1)}
-        aria-label="Go back"
-        className="mt-10 z-50 mx-auto max-w-5xl w-12 p-3 py-3 cursor-pointer rounded-full border border-[#DDE3EF] w-fit bg-white animate-[jumpIn_0.7s_ease-out_both]"
-      >
-        <Undo2 size={20} />
-      </button>
+      {/* Same position and look as the closed navbar pill on the home page */}
+      <div className="fixed top-4 left-0 right-0 z-50 mx-auto max-w-5xl px-4 sm:top-8 sm:px-15 xl:px-0">
+        <button
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+          className="mt-2 grid size-12 cursor-pointer place-items-center rounded-full border border-[#DDE3EF] bg-white animate-[jumpIn_0.7s_ease-out_both]"
+        >
+          <Undo2 size={20} />
+        </button>
+      </div>
       <section
         id="home"
-        className="flex min-h-[calc(90vh-5rem)] items-center justify-center gap-20"
+        className="flex min-h-[calc(90vh-5rem)] flex-col items-center justify-center gap-10 px-6 pt-28 pb-10 lg:flex-row lg:gap-20 lg:py-0"
       >
-        <div className="flex flex-col gap-10 text-[18px] animate-[jumpIn_0.7s_ease-out_both]">
+        <div className="flex flex-col gap-8 text-[16px] animate-[jumpIn_0.7s_ease-out_both] sm:gap-10 sm:text-[18px]">
           <p>
             I graduated last August, 2025 under Computer Science. Currently, I
             am focusing on web development with the goal of building responsive
             and efficient applications.
           </p>
 
-          <p className="animate-[jumpIn_0.7s_ease-out_both] text-[18px]">
+          <p className="animate-[jumpIn_0.7s_ease-out_both]">
             Here are some technologies I have been working with:
           </p>
 
-          <div className="grid grid-cols-2 gap-x-12 gap-y-4 animate-[jumpIn_0.7s_ease-out_both] text-[18px]">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-4 animate-[jumpIn_0.7s_ease-out_both] sm:gap-x-12">
             {[
               "React.js",
               "JavaScript ES6+",
@@ -59,11 +63,11 @@ function ViewFullBioPage() {
             </a>
           </button>
         </div>
-        <div>
+        <div className="w-full max-w-[720px] lg:w-auto">
           <img
             src={aboutImage}
             alt="Emman's profile"
-            className="h-115 w-180 rounded-[50px] object-cover animate-[jumpIn_0.7s_ease-out_both]"
+            className="h-64 w-full rounded-[32px] object-cover animate-[jumpIn_0.7s_ease-out_both] sm:h-80 sm:rounded-[50px] lg:h-115 lg:w-120 xl:w-180"
           />
         </div>
       </section>

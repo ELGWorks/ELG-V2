@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center gap-2 py-8 text-[15px] text-[#8D8D8D]">
+    <footer className="flex flex-col items-center justify-center gap-2 px-4 py-8 text-center text-[13px] text-[#8D8D8D] sm:text-[15px]">
       <p>Built and designed by Emmanuel Gonzales.</p>
       <p>All rights reserved. ©</p>
     </footer>
