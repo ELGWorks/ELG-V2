@@ -2,9 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="512x512" href="/ELGWorks-Logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Emmanuel Gonzales - Website Developer</title>
+    <!-- Runs before first paint so the saved (or system) theme is applied
+         immediately: no flash of the wrong theme on load or refresh. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

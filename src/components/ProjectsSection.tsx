@@ -1,53 +1,17 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
-
-type Project = {
-  title: string;
-  description: string;
-  role: string;
-  aiRole: string;
-  highlights: string[];
-  image: string;
-  techStack: string[];
-  sourceUrl: string;
-  siteUrl: string;
-};
-
-// Placeholder data; later this will come from the "data" folder.
-const baseProject: Project = {
-  title: "Img2Pixel",
-  description:
-    "A simple web application that turns images into pixelated style output.",
-  role: "Fullstack Developer",
-  aiRole: "Fullstack Developer",
-  highlights: [
-    "Develop frontend pages",
-    "Designed picture conversion logic",
-    "Lorep ipsum",
-  ],
-  image: "#",
-  techStack: ["HTML5", "CSS3", "tailwindCSS"],
-  sourceUrl: "#",
-  siteUrl: "#",
-};
-
-const projects: Project[] = [
-  { ...baseProject, title: "Img2Pixel" },
-  { ...baseProject, title: "Project Two" },
-  { ...baseProject, title: "Project Three" },
-  { ...baseProject, title: "Project Four" },
-  { ...baseProject, title: "Project Five" },
-];
+import { projects } from "../data/projects";
+import type { Project } from "../types/project";
 
 const VISIBLE_COUNT = 2; // fully shown cards
 const PEEK_HEIGHT = "max-h-[200px] sm:max-h-[240px]"; // how much of the 3rd card shows when collapsed
 const EXPANDED_HEIGHT = "max-h-[1200px] md:max-h-[800px]"; // must exceed the card's height
 
 const buttonBase =
-  "flex w-fit cursor-pointer items-center gap-1.5 rounded-full border border-[#257BBE] text-[#257BBE] transition-colors duration-300 ease-in-out hover:bg-[#257BBE] hover:text-white";
+  "flex w-fit cursor-pointer items-center gap-1.5 rounded-full border border-accent text-accent transition-colors duration-300 ease-in-out hover:bg-accent hover:text-on-accent";
 const linkButton = `${buttonBase} px-3 py-1.5 text-[14px] sm:px-4 sm:text-[16px]`;
-const bigButton = `${buttonBase} bg-white px-5 py-2 text-[16px] sm:px-6 sm:py-2.5 sm:text-[18px]`;
+const bigButton = `${buttonBase} bg-surface px-5 py-2 text-[16px] sm:px-6 sm:py-2.5 sm:text-[18px]`;
 
 // Same effect as the Home section: fade/slide wrapper + jumpIn on the content.
 // Instead of window.scrollY, each card tracks its own visibility.
@@ -93,25 +57,40 @@ function Reveal({
   );
 }
 
+// Source / Visit Site buttons. The card renders them twice: top right on
+// larger screens, bottom center on phones. Only one is displayed at a time.
+function ProjectLinks({
+  project,
+  className = "",
+}: {
+  project: Project;
+  className?: string;
+}) {
+  return (
+    <div className={`gap-3 ${className}`}>
+      <a href={project.sourceUrl} target="_blank" className={linkButton}>
+        Source
+        <ArrowUpRight size={18} />
+      </a>
+      <a href={project.siteUrl} target="_blank" className={linkButton}>
+        Visit Site
+        <ArrowUpRight size={18} />
+      </a>
+    </div>
+  );
+}
+
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="flex w-full max-w-[1000px] flex-col rounded-[32px] border border-[#E9EDF5] bg-white p-5 sm:rounded-[50px] sm:p-8">
+    <article className="flex w-full max-w-[1000px] flex-col rounded-[32px] border border-line bg-surface p-5 sm:rounded-[50px] sm:p-8">
       {/* Top row */}
-      <header className="flex flex-col items-start gap-4 border-b border-[#E9EDF5] pb-5 sm:flex-row sm:items-center sm:justify-between">
+      <header className="flex items-center justify-between border-b border-line pb-5">
         <h3 className="text-[24px] font-bold sm:text-[30px]">
           {project.title}
         </h3>
 
-        <div className="flex gap-3">
-          <a href={project.sourceUrl} className={linkButton}>
-            Source
-            <ArrowUpRight size={18} />
-          </a>
-          <a href={project.siteUrl} className={linkButton}>
-            Visit Site
-            <ArrowUpRight size={18} />
-          </a>
-        </div>
+        {/* Top right from sm up (hidden on phones) */}
+        <ProjectLinks project={project} className="hidden sm:flex" />
       </header>
 
       {/* Bottom row */}
@@ -123,7 +102,7 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="text-[15px]">AI Role: {project.aiRole}</p>
 
           <div className="mt-1">
-            <p className="text-[15px] font-bold text-[#D9824F]">
+            <p className="text-[15px] font-bold text-warm">
               What I did in this project:
             </p>
             <ul className="ml-1 list-inside list-disc text-[15px]">
@@ -136,7 +115,7 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* Right: preview + tech stack */}
         <div className="flex flex-1 flex-col gap-3">
-          <div className="flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#E9EDF5] sm:rounded-[30px]">
+          <div className="flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[20px] border border-line sm:rounded-[30px]">
             <img
               src={project.image}
               alt={`${project.title} preview`}
@@ -145,12 +124,12 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="text-[13px] text-gray-500">Tech Stack</p>
+            <p className="text-[13px] text-label">Tech Stack</p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-[#E9EDF5] bg-[#F4F5F9] px-3 py-1 text-[11px] text-gray-700"
+                  className="rounded-full border border-line bg-chip px-3 py-1 text-[11px] text-chip-fg"
                 >
                   {tech}
                 </span>
@@ -159,6 +138,12 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
       </div>
+
+      {/* Phones only: centered at the very bottom of the card */}
+      <ProjectLinks
+        project={project}
+        className="mt-6 flex justify-center sm:hidden"
+      />
     </article>
   );
 }
@@ -199,7 +184,10 @@ function ProjectsSection() {
 
       const paddingTop = parseFloat(getComputedStyle(section).paddingTop);
       const HEADER_SPACE = 96;
-      const topGap = Math.max((window.innerHeight - card.offsetHeight) / 2, HEADER_SPACE);
+      const topGap = Math.max(
+        (window.innerHeight - card.offsetHeight) / 2,
+        HEADER_SPACE,
+      );
       setScrollOffset(topGap - paddingTop);
     };
 
@@ -224,11 +212,11 @@ function ProjectsSection() {
       id="projects"
       ref={sectionRef}
       style={{ scrollMarginTop: `${scrollOffset}px` }}
-      className="flex min-h-screen flex-col items-center gap-8 bg-[#E3EDFF] px-4 py-28 sm:gap-12 sm:py-32"
+      className="flex min-h-screen flex-col items-center gap-8  px-4 py-28 sm:gap-12 sm:py-32"
     >
       {firstCards.map((project, i) => (
         <div
-          key={`${project.title}-${i}`}
+          key={project.id}
           ref={i === 0 ? firstCardRef : undefined}
           className="w-full"
         >
@@ -248,9 +236,10 @@ function ProjectsSection() {
             <ProjectCard project={peekCard} />
           </Reveal>
 
-          {/* Fade + "See all projects" button (collapsed only) */}
+          {/* Fade + "See all projects" button (collapsed only).
+              The gradient uses the page color so it blends into the background. */}
           <div
-            className={`absolute inset-x-0 bottom-0 flex h-36 items-end justify-center bg-gradient-to-t from-[#E3EDFF] via-[#E3EDFF]/80 to-transparent pb-4 transition-opacity duration-300 sm:h-44 sm:pb-6 ${
+            className={`absolute inset-x-0 bottom-0 flex h-36 items-end justify-center bg-gradient-to-t from-page via-page/80 to-transparent pb-4 transition-opacity duration-300 sm:h-44 sm:pb-6 ${
               expanded ? "pointer-events-none opacity-0" : "opacity-100"
             }`}
           >
@@ -278,8 +267,8 @@ function ProjectsSection() {
       >
         <div className="min-h-0 overflow-hidden">
           <div className="flex flex-col items-center gap-8 pt-8 sm:gap-12 sm:pt-12">
-            {restCards.map((project, i) => (
-              <Reveal key={`${project.title}-rest-${i}`}>
+            {restCards.map((project) => (
+              <Reveal key={project.id}>
                 <ProjectCard project={project} />
               </Reveal>
             ))}

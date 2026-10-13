@@ -37,10 +37,10 @@ function ContactSection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          <div className="flex items-center gap-3 text-[16px] text-black sm:text-[25px]">
+          <div className="flex items-center gap-3 text-[16px] text-fg sm:text-[25px]">
             <a
               href="mailto:emmanuellouisegonzales@gmail.com"
-              className="flex items-center gap-3 transition-colors duration-300 ease-in-out hover:text-[#257BBE]"
+              className="flex items-center gap-3 transition-colors duration-300 ease-in-out hover:text-accent"
             >
               <Mail className="size-7 shrink-0 sm:size-10" />
               <span className="break-all">emmanuellouisegonzales@gmail.com</span>
@@ -53,7 +53,7 @@ function ContactSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile"
-              className="flex items-center gap-3 text-[16px] text-black transition-colors duration-300 ease-in-out hover:text-[#257BBE] sm:text-[20px]"
+              className="flex items-center gap-3 text-[16px] text-fg transition-colors duration-300 ease-in-out hover:text-accent sm:text-[20px]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ function ContactSection() {
             </a>
           </div>
 
-          <div className="flex items-center gap-3 text-[16px] text-black sm:text-[20px]">
+          <div className="flex items-center gap-3 text-[16px] text-fg sm:text-[20px]">
             <MapPin className="size-7 shrink-0 sm:size-10" />
             <p>Pampanga, Philippines</p>
           </div>

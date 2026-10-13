@@ -44,7 +44,7 @@ function HomeSection() {
 
         <div className="flex flex-col items-center gap-8 text-center animate-[jumpIn_0.7s_ease-out_0.15s_both] md:items-start md:gap-15 md:text-left">
           <p className="text-[44px] leading-none sm:text-[55px] md:text-[65px]">
-            hi, <span className="text-[#257BBE]">emman</span> here.
+            hi, <span className="text-accent">emman</span> here.
           </p>
 
           <div>
@@ -53,7 +53,7 @@ function HomeSection() {
             </p>
             <Link
               to="/viewfullbio"
-              className="w-fit cursor-pointer text-[14px] text-[#8D8D8D] transition-colors duration-600 ease-in-out hover:text-[#257BBE] hover:underline"
+              className="w-fit cursor-pointer text-[14px] text-muted transition-colors duration-600 ease-in-out hover:text-accent hover:underline"
             >
               View Full Bio
             </Link>
@@ -61,7 +61,7 @@ function HomeSection() {
 
           <button
             aria-label="Send an email"
-            className="flex w-fit cursor-pointer items-center gap-1.5 rounded-[50px] border border-[#257BBE] px-4 pt-2.5 pb-2 text-[16px] font-bold text-[#257BBE] transition-colors duration-600 ease-in-out hover:bg-[#257BBE] hover:text-white"
+            className="flex w-fit cursor-pointer items-center gap-1.5 rounded-[50px] border border-accent px-4 pt-2.5 pb-2 text-[16px] font-bold text-accent transition-colors duration-600 ease-in-out hover:bg-accent hover:text-on-accent"
           >
             <Send size={20} />
             Say hi!

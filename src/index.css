@@ -1,12 +1,106 @@
 @import "tailwindcss";
 
+/*
+ * Theme tokens
+ * ------------
+ * Each color is registered with @property so the browser can interpolate it.
+ * Toggling `.dark` on <html> then fades every color on the page together,
+ * slowly and in sync, without touching each element's own transitions.
+ */
+@property --t-page       { syntax: "<color>"; inherits: true; initial-value: #E6EFFF; }
+@property --t-section    { syntax: "<color>"; inherits: true; initial-value: #E3EDFF; }
+@property --t-surface    { syntax: "<color>"; inherits: true; initial-value: #FFFFFF; }
+@property --t-line       { syntax: "<color>"; inherits: true; initial-value: #E9EDF5; }
+@property --t-line-strong{ syntax: "<color>"; inherits: true; initial-value: #DDE3EF; }
+@property --t-chip       { syntax: "<color>"; inherits: true; initial-value: #F4F5F9; }
+@property --t-chip-fg    { syntax: "<color>"; inherits: true; initial-value: #364153; }
+@property --t-label      { syntax: "<color>"; inherits: true; initial-value: #6A7282; }
+@property --t-fg         { syntax: "<color>"; inherits: true; initial-value: #000000; }
+@property --t-muted      { syntax: "<color>"; inherits: true; initial-value: #8D8D8D; }
+@property --t-accent     { syntax: "<color>"; inherits: true; initial-value: #257BBE; }
+@property --t-on-accent  { syntax: "<color>"; inherits: true; initial-value: #FFFFFF; }
+@property --t-warm       { syntax: "<color>"; inherits: true; initial-value: #D9824F; }
+@property --t-tint       { syntax: "<color>"; inherits: true; initial-value: #E6EFFF; }
+@property --t-nav        { syntax: "<color>"; inherits: true; initial-value: #C8C8C8; }
+
+:root {
+  --t-page: #E6EFFF;
+  --t-section: #E3EDFF;
+  --t-surface: #FFFFFF;
+  --t-line: #E9EDF5;
+  --t-line-strong: #DDE3EF;
+  --t-chip: #F4F5F9;
+  --t-chip-fg: #364153;
+  --t-label: #6A7282;
+  --t-fg: #000000;
+  --t-muted: #8D8D8D;
+  --t-accent: #257BBE;
+  --t-on-accent: #FFFFFF;
+  --t-warm: #D9824F;
+  --t-tint: #E6EFFF;
+  --t-nav: #C8C8C8;
+}
+
+/* Dark palette: soft navy, never pure black or pure white, to go easy on the eyes. */
+:root.dark {
+  --t-page: #0E1420;
+  --t-section: #121B2D;
+  --t-surface: #1A2540;
+  --t-line: #27334F;
+  --t-line-strong: #2D3A58;
+  --t-chip: #23304D;
+  --t-chip-fg: #C3CCDD;
+  --t-label: #93A0B8;
+  --t-fg: #E6EAF2;
+  --t-muted: #8C97AD;
+  --t-accent: #5BA8E8;
+  --t-on-accent: #0E1420;
+  --t-warm: #EA9A65;
+  --t-tint: #26334F;
+  --t-nav: #3A4968;
+}
+
 html {
   scroll-behavior: smooth;
+  background-color: var(--t-page);
+  color-scheme: light;
+
+  /* The slow fade between themes */
+  transition-property:
+    --t-page, --t-section, --t-surface, --t-line, --t-line-strong, --t-chip,
+    --t-chip-fg, --t-label, --t-fg, --t-muted, --t-accent, --t-on-accent,
+    --t-warm, --t-tint, --t-nav;
+  transition-duration: 900ms;
+  transition-timing-function: ease-in-out;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Expose the tokens as Tailwind colors: bg-page, text-fg, border-line, ... */
+@theme inline {
+  --color-page: var(--t-page);
+  --color-section: var(--t-section);
+  --color-surface: var(--t-surface);
+  --color-line: var(--t-line);
+  --color-line-strong: var(--t-line-strong);
+  --color-chip: var(--t-chip);
+  --color-chip-fg: var(--t-chip-fg);
+  --color-label: var(--t-label);
+  --color-fg: var(--t-fg);
+  --color-muted: var(--t-muted);
+  --color-accent: var(--t-accent);
+  --color-on-accent: var(--t-on-accent);
+  --color-warm: var(--t-warm);
+  --color-tint: var(--t-tint);
+  --color-nav: var(--t-nav);
 }
 
 body {
   margin: 0;
-  background-color: #E6EFFF;
+  background-color: var(--t-page);
+  color: var(--t-fg);
   font-family: 'NTR', sans-serif;
 }
 
