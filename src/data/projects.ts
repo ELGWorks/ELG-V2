@@ -137,7 +137,7 @@ export const projects: Project[] = [
     image: "",
     techStack: ["HTML5", "CSS3", "JavaScript", "React.js", "Vite", "TMDB API"],
     sourceUrl: "https://github.com/ELGWorks/MyMovieList",
-    siteUrl: "",
+    siteUrl: "https://mymovielist-3yn.pages.dev/",
   },
   {
     id: "rock-paper-scissors",
