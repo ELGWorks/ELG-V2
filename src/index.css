@@ -121,6 +121,26 @@ body {
   }
 }
 
+@keyframes jumpOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+}
+
+.jump-in {
+  animation: jumpIn 400ms ease-out both;
+}
+
+.jump-out {
+  animation: jumpOut 250ms ease-in both;
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
