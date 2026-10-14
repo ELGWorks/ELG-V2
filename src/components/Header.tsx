@@ -94,6 +94,9 @@ function Header() {
   return (
     <>
       <header className="fixed top-4 left-0 right-0 z-50 mx-auto max-w-5xl px-4 sm:top-8 sm:px-15 xl:px-0">
+        {/* From sm up, extend 53px past the content edges on both sides
+            (48px button + ~5px gap) so the buttons never touch the content. */}
+        <div className="sm:-mx-[53px]">
         {/* Desktop / tablet pill */}
         <div
           className={`mt-2 hidden h-12 items-center justify-between overflow-hidden rounded-full border border-line-strong bg-surface text-[18px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] sm:flex ${
@@ -166,6 +169,7 @@ function Header() {
           >
             {menuOpen ? <X size={20} /> : <PanelLeft size={20} />}
           </button>
+        </div>
         </div>
       </header>
 

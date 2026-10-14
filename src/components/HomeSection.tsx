@@ -45,11 +45,16 @@ function HomeSection() {
         <div className="flex flex-col items-center gap-8 text-center animate-[jumpIn_0.7s_ease-out_0.15s_both] md:items-start md:gap-15 md:text-left">
           <p className="text-[44px] leading-none sm:text-[55px] md:text-[65px]">
             hi, <span className="text-accent">emman</span> here.
+            {/* Blinking "typing" cursor */}
+            <span
+              aria-hidden="true"
+              className="ml-1.5 inline-block h-[0.8em] w-[0.07em] animate-[blink_1s_step-end_infinite] rounded-full bg-accent align-[-0.08em] motion-reduce:animate-none"
+            />
           </p>
 
           <div>
             <p className="text-[16px] md:text-[18px]">
-              Website front-end developer + AI from Pampanga, Philippines.
+              Website frontend developer + AI from Pampanga, Philippines.
             </p>
             <Link
               to="/viewfullbio"

@@ -1,7 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import { Mail, MapPin } from "lucide-react";
 
+// Live clock for Pampanga. The time zone is fixed to Asia/Manila, so it shows
+// Philippine time no matter where the visitor is.
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: "Asia/Manila",
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+});
+
+function usePhilippineTime() {
+  const [time, setTime] = useState(() => timeFormatter.format(new Date()));
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    // Tick right on each second boundary so the clock never drifts.
+    const tick = () => {
+      setTime(timeFormatter.format(new Date()));
+      const msToNextSecond = 1000 - (Date.now() % 1000);
+      timeout = setTimeout(tick, msToNextSecond);
+    };
+
+    tick();
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return time;
+}
+
 function ContactSection() {
+  const localTime = usePhilippineTime();
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -72,7 +102,12 @@ function ContactSection() {
 
           <div className="flex items-center gap-3 text-[16px] text-fg sm:text-[20px]">
             <MapPin className="size-7 shrink-0 sm:size-10" />
-            <p>Pampanga, Philippines</p>
+            <p>
+              Pampanga, Philippines{" "}
+              <span className="tabular-nums text-muted">
+                ({localTime})
+              </span>
+            </p>
           </div>
         </div>
       </div>

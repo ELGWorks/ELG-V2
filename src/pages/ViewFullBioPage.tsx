@@ -15,7 +15,8 @@ function ViewFullBioPage() {
       {/* Same position and look as the buttons on the home page:
           back button on the left, theme button on the right */}
       <div className="fixed top-4 left-0 right-0 z-50 mx-auto max-w-5xl px-4 sm:top-8 sm:px-15 xl:px-0">
-        <div className="mt-2 flex items-center justify-between animate-[jumpIn_0.7s_ease-out_both]">
+        {/* sm:-mx-[53px] = same outward shift as the home navbar (48px button + ~5px gap) */}
+        <div className="mt-2 flex items-center justify-between animate-[jumpIn_0.7s_ease-out_both] sm:-mx-[53px]">
           <button
             onClick={() => navigate(-1)}
             aria-label="Go back"
@@ -40,9 +41,10 @@ function ViewFullBioPage() {
         id="home"
         className="flex min-h-screen items-center justify-center px-6 py-28 md:py-0"
       >
-        <div className="flex flex-col items-center justify-center gap-10 md:flex-row md:gap-20">
-          {/* Image comes first on phones (like Home), on the right from md up */}
-          <div className="animate-[jumpIn_0.7s_ease-out_both] md:order-last">
+        <div className="flex flex-col items-center justify-center gap-10 md:w-full md:flex-row md:gap-20">
+          {/* Image comes first on phones (like Home), on the right from md up.
+              shrink-0 keeps it at full size instead of being squeezed by the text. */}
+          <div className="shrink-0 animate-[jumpIn_0.7s_ease-out_both] md:order-last">
             <img
               src={aboutImage}
               alt="Emman's profile"
@@ -50,7 +52,7 @@ function ViewFullBioPage() {
             />
           </div>
 
-          <div className="flex flex-col items-center gap-8 text-center text-[16px] animate-[jumpIn_0.7s_ease-out_0.15s_both] md:items-start md:gap-15 md:text-left md:text-[18px]">
+          <div className="flex min-w-0 flex-col items-center gap-8 text-center text-[16px] animate-[jumpIn_0.7s_ease-out_0.15s_both] md:flex-1 md:items-start md:gap-15 md:text-left md:text-[18px]">
             <p>
               I graduated last August, 2025 under Computer Science. Currently, I
               am focusing on web development with the goal of building
