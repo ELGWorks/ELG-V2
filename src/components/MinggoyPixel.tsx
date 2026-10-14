@@ -19,13 +19,13 @@ const MILESTONES: Milestone[] = [
   {
     at: 10,
     text: "You dare pet a god, mortal?",
-    image: shookMinggoy2,
+    image: fierceMinggoy,
     alt: "Minggoy questioning",
   },
   {
     at: 25,
     text: "I am the great Minggoy! and I am here to invade your planet!",
-    image: fierceMinggoy,
+    image: shookMinggoy2,
     alt: "Minggoy declaring an invasion",
   },
   {
