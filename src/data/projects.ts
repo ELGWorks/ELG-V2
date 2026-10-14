@@ -17,7 +17,7 @@ export const projects: Project[] = [
     id: "ecommerce-project",
     title: "Ecommerce Project",
     description:
-      "A mocked-up shopping website with a React.js frontend and an AI-assisted Node.js and Express backend.",
+      "A mocked-up shopping website with a React.js for frontend and an AI-assisted Node.js and Express for backend.",
     role: "Frontend Developer (TypeScript)",
     aiRole: "Backend Developer",
     highlights: [
@@ -44,6 +44,21 @@ export const projects: Project[] = [
     techStack: ["HTML5", "CSS3", "React.js"],
     sourceUrl: "https://github.com/ELGWorks/MyPrompts",
     siteUrl: "https://addons.mozilla.org/en-US/firefox/addon/myprompts-ai/",
+  },
+  {
+    id: "chatbot",
+    title: "Chatbot",
+    description: "A basic chatbot application built using React.js.",
+    role: "Frontend Developer",
+    aiRole: "Code Reviewer",
+    highlights: [
+      "Built the chatbot interface using React.js.",
+      "Used AI to review code.",
+    ],
+    image: chatbotImage,
+    techStack: ["HTML5", "CSS3", "JavaScript", "React.js"],
+    sourceUrl: "https://github.com/ELGWorks/Chatbot",
+    siteUrl: "https://chatbot-2ej.pages.dev/",
   },
   {
     id: "youtube-ui-clone",
@@ -92,21 +107,6 @@ export const projects: Project[] = [
     techStack: ["HTML5", "CSS3", "JavaScript"],
     sourceUrl: "https://github.com/ELGWorks/Img2Pixel",
     siteUrl: "https://img2pixel.vercel.app/",
-  },
-  {
-    id: "chatbot",
-    title: "Chatbot",
-    description: "A basic chatbot application built using React.js.",
-    role: "Frontend Developer",
-    aiRole: "Code Reviewer",
-    highlights: [
-      "Built the chatbot interface using React.js.",
-      "Used AI to review code.",
-    ],
-    image: chatbotImage,
-    techStack: ["HTML5", "CSS3", "JavaScript", "React.js"],
-    sourceUrl: "https://github.com/ELGWorks/Chatbot",
-    siteUrl: "https://chatbot-2ej.pages.dev/",
   },
   {
     id: "grand-velora-hotel",
