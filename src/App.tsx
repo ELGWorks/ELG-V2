@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router';
 import HomePage from './pages/HomePage';
 import ViewFullBioPage from "./pages/ViewFullBioPage";
 import ScrollToTop from "./components/ScrollToTop";
+import MinggoyChat from "./components/MinggoyChat";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/viewfullbio" element={<ViewFullBioPage />} />
       </Routes>
+
+      <MinggoyChat />
     </div>
   )
 }

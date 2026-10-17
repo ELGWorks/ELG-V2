@@ -5,7 +5,84 @@
     <link rel="icon" type="image/svg+xml" sizes="512x512" href="/ELGWorks-Logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+
+    <!-- Browser UI color (address bar on mobile), matches the page background -->
+    <meta name="theme-color" content="#E6EFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E1420" media="(prefers-color-scheme: dark)" />
+
+    <!-- Search -->
     <title>Emmanuel Gonzales - Website Developer</title>
+    <meta
+      name="description"
+      content="Emmanuel Gonzales is a front-end web developer from Pampanga, Philippines who builds responsive React, TypeScript and Tailwind CSS websites. See his projects."
+    />
+    <meta name="author" content="Emmanuel Gonzales" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Open Graph (Facebook, LinkedIn, Discord, Slack, iMessage, WhatsApp...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Emmanuel Gonzales" />
+    <meta property="og:title" content="Emmanuel Gonzales - Website Developer" />
+    <meta
+      property="og:description"
+      content="Front-end web developer from Pampanga, Philippines. React, TypeScript and Tailwind CSS. See his projects."
+    />
+    <meta property="og:image" content="https://www.emmanuelgonzales.dev/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Emmanuel Gonzales, website developer, with a pixel art white cat"
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Emmanuel Gonzales - Website Developer" />
+    <meta
+      name="twitter:description"
+      content="Front-end web developer from Pampanga, Philippines. React, TypeScript and Tailwind CSS. See his projects."
+    />
+    <meta name="twitter:image" content="https://www.emmanuelgonzales.dev/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Emmanuel Gonzales, website developer, with a pixel art white cat"
+    />
+
+    <!-- Structured data: tells Google this site is about a person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Gonzales",
+        "alternateName": "Emmanuel Louise Gonzales",
+        "url": "https://www.emmanuelgonzales.dev/",
+        "image": "https://www.emmanuelgonzales.dev/og-image.png",
+        "jobTitle": "Front-end Developer",
+        "description": "Front-end web developer from Pampanga, Philippines who builds responsive React, TypeScript and Tailwind CSS websites.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Pampanga",
+          "addressCountry": "PH"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Pampanga State University"
+        },
+        "knowsAbout": [
+          "Front-end development",
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Tailwind CSS",
+          "HTML5",
+          "CSS3"
+        ],
+        "sameAs": ["https://github.com/ELGWorks"]
+      }
+    </script>
+
     <!-- Runs before first paint so the saved (or system) theme is applied
          immediately: no flash of the wrong theme on load or refresh. -->
     <script>
