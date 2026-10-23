@@ -518,7 +518,7 @@ function PixelCat() {
         if (e.pointerType === "mouse") sim.current.target = null;
       }}
       onPointerDown={(e) => aim(e.clientX)}
-      className="relative mb-2 h-24 w-full max-w-5xl touch-manipulation select-none"
+      className="relative z-10 mb-2 h-24 w-full max-w-5xl touch-manipulation select-none"
     >
       {/* ground */}
       <div className="absolute inset-x-0 bottom-0 border-b-2 border-dashed border-muted/50" />
@@ -527,9 +527,15 @@ function PixelCat() {
         ref={catRef}
         type="button"
         aria-label="Pet Minggoy"
-        onPointerDown={(e) => e.stopPropagation()}
-        onClick={pet}
-        className="absolute bottom-[2px] left-0 block cursor-pointer rounded-md will-change-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          if (e.button !== 0) return;
+          pet();
+        }}
+        onClick={(e) => {
+          if (e.detail === 0) pet(); // keyboard only
+        }}
+        className="absolute bottom-[2px] left-0 z-10 block cursor-pointer touch-none rounded-md will-change-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         style={{ width: CAT_W, height: CAT_H }}
       >
         <span ref={bodyRef} className="block">

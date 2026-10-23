@@ -303,12 +303,12 @@ export default function MinggoyChat() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5">
+    <div className="pointer-events-none fixed bottom-5 right-5 z-50">
       {/* Always mounted so it can fade and pop smoothly in both directions.
           While closed it is invisible, so it can't be tabbed to or clicked. */}
       <section
         aria-label="Chat with Minggoy"
-        className={`mb-3 flex h-[min(520px,70vh)] w-[min(360px,calc(100vw-2.5rem))] origin-bottom-right flex-col overflow-hidden rounded-3xl border border-line-strong bg-surface text-fg shadow-2xl transition-[opacity,transform,visibility] duration-300 ease-out ${
+        className={`pointer-events-auto mb-3 flex h-[min(520px,70vh)] w-[min(360px,calc(100vw-2.5rem))] origin-bottom-right flex-col overflow-hidden rounded-3xl border border-line-strong bg-surface text-fg shadow-2xl transition-[opacity,transform,visibility] duration-300 ease-out ${
           isOpen
             ? "visible translate-y-0 scale-100 opacity-100"
             : "invisible translate-y-4 scale-95 opacity-0"
@@ -429,14 +429,14 @@ export default function MinggoyChat() {
 
       {/* Floating cat button. Enters with the same jump-in as the rest of the
           site, a moment after the page loads. */}
-      <div className="flex animate-[jumpIn_0.7s_ease-out_0.8s_both] justify-end cursor-pointer">
+      <div className="flex animate-[jumpIn_0.7s_ease-out_0.8s_both] justify-end">
         <button
           ref={launcherRef}
           type="button"
           onClick={() => (isOpen ? closeChat() : setIsOpen(true))}
           aria-label={isOpen ? "Close Minggoy chat" : "Chat with Minggoy"}
           aria-expanded={isOpen}
-          className="grid size-[68px] cursor-pointer place-items-center rounded-full bg-accent text-on-accent shadow-xl transition-transform duration-300 hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="pointer-events-auto grid size-[68px] cursor-pointer place-items-center rounded-full bg-accent text-on-accent shadow-xl transition-transform duration-300 hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           <span className="relative grid size-full place-items-center">
             {/* Cat head and X swap places with a small spin */}
