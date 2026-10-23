@@ -303,7 +303,7 @@ export default function MinggoyChat() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-[100]">
+    <div className="fixed bottom-5 right-5">
       {/* Always mounted so it can fade and pop smoothly in both directions.
           While closed it is invisible, so it can't be tabbed to or clicked. */}
       <section
