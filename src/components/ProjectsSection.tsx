@@ -102,17 +102,17 @@ function ProjectCard({ project }: { project: Project }) {
           <h3 className="text-[24px] font-bold sm:text-[30px]">
             {project.title}
           </h3>
-{project.status && (
-  <span
-    className={`rounded-full border px-2.5 py-0.5 text-[18px] ${
-      project.status === "Completed"
-        ? "border-green-500 text-green-500"
-        : "border-warm text-warm"
-    }`}
-  >
-    {project.status}
-  </span>
-)}
+          {project.status && (
+            <span
+              className={`rounded-full border px-2.5 py-0.5 text-[18px] ${
+                project.status === "Completed"
+                  ? "border-green-500 text-green-500"
+                  : "border-warm text-warm"
+              }`}
+            >
+              {project.status}
+            </span>
+          )}
         </div>
 
         {/* Top right from sm up (hidden on phones) */}
@@ -138,26 +138,17 @@ function ProjectCard({ project }: { project: Project }) {
           </dl>
 
           <div className="mt-1 flex flex-col gap-1">
-            <h4 className="text-[16px] font-bold text-warm">What I did in this project:</h4>
+            <h4 className="text-[16px] font-bold text-warm">
+              What I did in this project:
+            </h4>
             <ul className="list-outside list-disc space-y-1 pl-5 text-[16px]">
               {project.highlights.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
-        </div>
 
-        {/* Right: preview + tech stack */}
-        <div className="flex flex-1 flex-col gap-3">
-          <div className="flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[20px] border border-line sm:rounded-[30px]">
-            <img
-              src={project.image}
-              alt={`${project.title} preview`}
-              className="h-full w-full object-cover"
-            />
-          </div>
-
-          <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
             <p className="text-[14px] text-label">Tech Stack</p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
@@ -169,6 +160,17 @@ function ProjectCard({ project }: { project: Project }) {
                 </span>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Right: preview + tech stack */}
+        <div className="flex flex-1 flex-col gap-3">
+          <div className="flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[20px] border border-line sm:rounded-[30px]">
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </div>
