@@ -8,7 +8,6 @@ import shookMinggoy2 from "../assets/images/minggoy/seriousminggoy2.webp";
 
 type Milestone = {
   at: number;
-  text: string;
   image: string;
   alt: string;
 };
@@ -18,37 +17,31 @@ const LOOP_AT = 100;
 const MILESTONES: Milestone[] = [
   {
     at: 10,
-    text: "You dare pet a god, mortal?",
     image: fierceMinggoy,
     alt: "Minggoy questioning",
   },
   {
     at: 25,
-    text: "I am the great Minggoy! and I am here to invade your planet!",
     image: shookMinggoy2,
     alt: "Minggoy declaring an invasion",
   },
   {
     at: 40,
-    text: "Hmm? You are still on it? Alright :3",
     image: sleepingMinggoy2,
     alt: "Minggoy looking impressed",
   },
   {
     at: 55,
-    text: "You like petting cats, don't you? Mind you, one pet costs $1. Please send the money to Emman's bank account.",
     image: seriousMinggoy,
     alt: "Minggoy collecting payment",
   },
   {
     at: 80,
-    text: "zZzzZzzZ 😴💤",
     image: sleepingMinggoy,
     alt: "Minggoy sleeping",
   },
   {
     at: 100,
-    text: "You are one consistent human, I give you that.",
     image: shookMinggoy,
     alt: "Minggoy acknowledging your dedication",
   },
@@ -579,9 +572,6 @@ function PixelCat() {
           }}
         >
           <p className="pr-8 text-[12px] font-bold text-accent">Minggoy</p>
-          <p className="mt-1 text-[15px] leading-snug">
-            {speech.milestone.text}
-          </p>
 
           <img
             src={speech.milestone.image}

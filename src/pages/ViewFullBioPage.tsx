@@ -64,10 +64,11 @@ function ViewFullBioPage() {
             <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-left md:gap-x-12">
               {[
                 "React.js",
-                "JavaScript ES6+",
-                "Tailwind CSS",
+                "Next.js",
+                "TypeScript",
                 "MySQL",
                 "PHP",
+                "Laravel",
               ].map((tech) => (
                 <div key={tech} className="flex items-center gap-3">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-accent" />

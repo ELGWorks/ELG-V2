@@ -10,7 +10,7 @@ const EXPANDED_HEIGHT = "max-h-[1200px] md:max-h-[800px]"; // must exceed the ca
 
 const buttonBase =
   "flex w-fit cursor-pointer items-center gap-1.5 rounded-full border border-accent text-accent transition-colors duration-300 ease-in-out hover:bg-accent hover:text-on-accent";
-const linkButton = `${buttonBase} px-3 py-1.5 text-[14px] sm:px-4 sm:text-[16px]`;
+const linkButton = `${buttonBase} px-3 py-1.5 text-[16px] sm:px-4 sm:text-[18px]`;
 const bigButton = `${buttonBase} bg-surface px-5 py-2 text-[16px] sm:px-6 sm:py-2.5 sm:text-[18px]`;
 
 // Same effect as the Home section: fade/slide wrapper + jumpIn on the content.
@@ -59,6 +59,7 @@ function Reveal({
 
 // Source / Visit Site buttons. The card renders them twice: top right on
 // larger screens, bottom center on phones. Only one is displayed at a time.
+// aria-labels make the two links distinguishable for screen reader users.
 function ProjectLinks({
   project,
   className = "",
@@ -68,13 +69,25 @@ function ProjectLinks({
 }) {
   return (
     <div className={`gap-3 ${className}`}>
-      <a href={project.sourceUrl} target="_blank" className={linkButton}>
+      <a
+        href={project.sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${project.title} source code (opens in a new tab)`}
+        className={linkButton}
+      >
         Source
-        <ArrowUpRight size={18} />
+        <ArrowUpRight size={18} aria-hidden="true" />
       </a>
-      <a href={project.siteUrl} target="_blank" className={linkButton}>
+      <a
+        href={project.siteUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${project.title} live site (opens in a new tab)`}
+        className={linkButton}
+      >
         Visit Site
-        <ArrowUpRight size={18} />
+        <ArrowUpRight size={18} aria-hidden="true" />
       </a>
     </div>
   );
@@ -85,9 +98,22 @@ function ProjectCard({ project }: { project: Project }) {
     <article className="flex w-full max-w-[1000px] flex-col rounded-[32px] border border-line bg-surface p-5 sm:rounded-[50px] sm:p-8">
       {/* Top row */}
       <header className="flex items-center justify-between border-b border-line pb-5">
-        <h3 className="text-[24px] font-bold sm:text-[30px]">
-          {project.title}
-        </h3>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <h3 className="text-[24px] font-bold sm:text-[30px]">
+            {project.title}
+          </h3>
+{project.status && (
+  <span
+    className={`rounded-full border px-2.5 py-0.5 text-[18px] ${
+      project.status === "Completed"
+        ? "border-green-500 text-green-500"
+        : "border-warm text-warm"
+    }`}
+  >
+    {project.status}
+  </span>
+)}
+        </div>
 
         {/* Top right from sm up (hidden on phones) */}
         <ProjectLinks project={project} className="hidden sm:flex" />
@@ -97,15 +123,23 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="mt-5 flex flex-col gap-6 md:flex-row md:gap-8">
         {/* Left: details */}
         <div className="flex flex-1 flex-col gap-3">
-          <p className="text-[16px] sm:text-[18px]">{project.description}</p>
-          <p className="text-[15px]">My Role: {project.role}</p>
-          <p className="text-[15px]">AI Role: {project.aiRole}</p>
+          <p className="text-[18px] sm:text-[20px]">{project.description}</p>
 
-          <div className="mt-1">
-            <p className="text-[15px] font-bold text-warm">
-              What I did in this project:
-            </p>
-            <ul className="ml-1 list-inside list-disc text-[15px]">
+          {/* Label/value pairs: muted label, normal-weight value */}
+          <dl className="flex flex-col gap-1 text-[16px]">
+            <div className="flex gap-1.5">
+              <dt className="text-label">My Role:</dt>
+              <dd>{project.role}</dd>
+            </div>
+            <div className="flex gap-1.5">
+              <dt className="text-label">AI Role:</dt>
+              <dd>{project.aiRole}</dd>
+            </div>
+          </dl>
+
+          <div className="mt-1 flex flex-col gap-1">
+            <h4 className="text-[16px] font-bold text-warm">What I did in this project:</h4>
+            <ul className="list-outside list-disc space-y-1 pl-5 text-[16px]">
               {project.highlights.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -124,12 +158,12 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="text-[13px] text-label">Tech Stack</p>
+            <p className="text-[14px] text-label">Tech Stack</p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-line bg-chip px-3 py-1 text-[11px] text-chip-fg"
+                  className="rounded-full border border-line bg-chip px-3 py-1 text-[14px] text-chip-fg"
                 >
                   {tech}
                 </span>
@@ -211,9 +245,15 @@ function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
+      aria-labelledby="projects-heading"
       style={{ scrollMarginTop: `${scrollOffset}px` }}
       className="flex min-h-screen flex-col items-center gap-8  px-4 py-28 sm:gap-12 sm:py-32"
     >
+      {/* Visually hidden: gives the section a heading so cards (h3) have an h2 parent */}
+      <h2 id="projects-heading" className="sr-only">
+        Projects
+      </h2>
+
       {firstCards.map((project, i) => (
         <div
           key={project.id}
@@ -246,10 +286,11 @@ function ProjectsSection() {
             <button
               type="button"
               onClick={() => setExpanded(true)}
+              aria-expanded={expanded}
               className={bigButton}
             >
               See all projects
-              <ArrowUpRight size={20} />
+              <ArrowUpRight size={20} aria-hidden="true" />
             </button>
           </div>
         </div>

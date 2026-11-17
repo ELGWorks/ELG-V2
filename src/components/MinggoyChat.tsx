@@ -9,7 +9,7 @@ type Message = {
 
 const welcomeMessage: Message = {
   role: "minggoy",
-  text: "A visitor? Very well. I am Minggoy, the digital guardian of this portfolio. Ask me about my human, Emman.",
+  text: "I am Minggoy, the digital guardian of this portfolio. Ask me about my human, Emman.",
 };
 
 function getReply(question: string): string {
