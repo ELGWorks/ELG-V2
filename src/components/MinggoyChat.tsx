@@ -28,7 +28,7 @@ function getReply(question: string): string {
       q,
     )
   ) {
-    return "Emman is a front-end developer from Pampanga, Philippines, interested in building websites and exploring AI.";
+    return "Emman is a full-stack developer from Pampanga, Philippines, interested in building websites and exploring AI.";
   }
 
   if (/\b(where|location|from|live)\b/.test(q)) {
@@ -40,7 +40,7 @@ function getReply(question: string): string {
       q,
     )
   ) {
-    return "Emman works with HTML5, CSS3, tailwindCSS, JavaScript, TypeScript, and React.js.";
+    return "Emman works with HTML5, CSS3, tailwindCSS, JavaScript, TypeScript, React.js and Next.js for front-end development. As for backend, he works with PHP and Laravel.";
   }
 
   if (/\b(project|projects|portfolio|work|built|made)\b/.test(q)) {
@@ -52,7 +52,7 @@ function getReply(question: string): string {
       q,
     )
   ) {
-    return "Emman builds frontend experiences using technologies like React, JavaScript, TypeScript, and Tailwind CSS. He also explores backend development.";
+    return "Emman builds full-stack experiences using technologies like Tailwind CSS, TypeScript, React.js, Next.js. He also explores backend development technologies like PHP and Laravel.";
   }
 
   if (/\b(laravel|php|backend|back.end|database)\b/.test(q)) {

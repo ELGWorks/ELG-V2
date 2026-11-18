@@ -54,7 +54,7 @@ function HomeSection() {
 
           <div>
             <p className="text-[16px] md:text-[18px]">
-              Front-end Website Developer + AI from Pampanga, Philippines.
+              Full-stack Website Developer + AI from Pampanga, Philippines.
             </p>
             <Link
               to="/viewfullbio"
