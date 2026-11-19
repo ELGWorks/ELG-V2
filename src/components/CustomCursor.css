@@ -1,0 +1,212 @@
+/* ===== Calm cursor styles ===== */
+
+/* Light mode colors (r, g, b). Match your accent blue. */
+:root {
+  --star: 38, 119, 192;    /* the star itself */
+  --glow: 90, 160, 232;    /* soft blue glow */
+  --core: 160, 205, 245;   /* bright center of the splash flash */
+}
+
+/* Dark mode colors. Change this selector to however your site marks dark mode. */
+html.dark,
+html[data-theme="dark"] {
+  --star: 196, 226, 255;
+  --glow: 74, 157, 224;
+  --core: 255, 255, 255;
+}
+
+/* Only hide the native cursor on devices with a real mouse */
+@media (hover: hover) and (pointer: fine) {
+  html.has-calm-cursor,
+  html.has-calm-cursor * {
+    cursor: none !important;
+  }
+
+  /* Over clickable things (links, buttons, Minggoy...) the star steps aside
+     and the normal pointer shows. Keep this list in sync with CLICKABLE in the .tsx */
+  html.has-calm-cursor :is(a, button, [role="button"], label, select, summary, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"], [class*="cursor-pointer"]),
+  html.has-calm-cursor :is(a, button, [role="button"], label, select, summary, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"], [class*="cursor-pointer"]) * {
+    cursor: pointer !important;
+  }
+
+  /* Over text fields the normal text cursor shows. Keep in sync with TEXT_FIELD in the .tsx */
+  html.has-calm-cursor :is(input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"], [type="range"]), textarea, [contenteditable="true"]) {
+    cursor: text !important;
+  }
+}
+
+/* ---- Cursor: a small four-point star that twinkles slowly ---- */
+.calm-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: transform;
+}
+.calm-cursor.calm-visible {
+  opacity: 1;
+}
+/* The star fades out quickly over clickables and text fields, and drifts back in after */
+.calm-cursor.is-hover,
+.calm-cursor.is-text {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.calm-scale {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.calm-cursor.is-down .calm-scale {
+  transform: scale(0.8);
+}
+.calm-scale svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 4px rgba(var(--glow), 0.9))
+    drop-shadow(0 0 11px rgba(var(--glow), 0.45));
+  animation: calm-twinkle 3.4s ease-in-out infinite;
+}
+@keyframes calm-twinkle {
+  0%,
+  100% {
+    transform: scale(0.88) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08) rotate(8deg);
+    opacity: 1;
+  }
+}
+
+/* ---- Stardust left behind while moving ----
+   Trail strength: change the first `opacity` in @keyframes calm-dust
+   (0.2 = faint, 0.45 = default, 0.7 = strong). */
+.calm-dust {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  border-radius: 50%;
+  background: rgb(var(--star));
+  box-shadow: 0 0 5px rgba(var(--glow), 0.55);
+  transform: translate(-50%, -50%);
+  animation: calm-dust 1.2s ease-out forwards;
+}
+.calm-dust--glow {
+  background: rgb(var(--glow));
+}
+@keyframes calm-dust {
+  0% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);
+  }
+}
+
+/* ---- Click splash: a star flash, a tilted orbit, a soft bloom and drifting stardust ---- */
+.calm-fx {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.calm-bloom {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--glow), 0.5) 0%,
+    rgba(var(--glow), 0.18) 40%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  animation: calm-bloom 1.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes calm-bloom {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes calm-orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--tilt)) scale(0.3);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--tilt)) scale(1);
+    opacity: 0;
+  }
+}
+
+.calm-flash,
+.calm-mini {
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+}
+
+@keyframes calm-flash {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.calm-speck,
+.calm-mini {
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation: calm-drift var(--life) cubic-bezier(0.16, 1, 0.3, 1) var(--delay) forwards;
+}
+.calm-speck {
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(var(--glow), 0.9);
+}
+@keyframes calm-drift {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calm-fx,
+  .calm-dust {
+    display: none;
+  }
+  .calm-scale svg {
+    animation: none;
+  }
+}
