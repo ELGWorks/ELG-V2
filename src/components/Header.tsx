@@ -97,79 +97,79 @@ function Header() {
         {/* From sm up, extend 53px past the content edges on both sides
             (48px button + ~5px gap) so the buttons never touch the content. */}
         <div className="sm:-mx-[53px]">
-        {/* Desktop / tablet pill */}
-        <div
-          className={`mt-2 hidden h-12 items-center justify-between overflow-hidden rounded-full border border-line-strong bg-surface text-[18px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] sm:flex ${
-            isOpen ? "w-full" : "w-12"
-          }`}
-        >
-          <button
-            aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((open) => !open)}
-            className="grid size-12 shrink-0 cursor-pointer place-items-center"
-          >
-            <PanelLeft size={20} />
-          </button>
-
-          {/* Stays mounted; fades out instantly-ish on close, fades in after the pill has grown on open */}
-          <nav
-            aria-hidden={!isOpen}
-            className={`flex flex-1 items-center justify-center gap-5 whitespace-nowrap text-[18px] text-muted transition-opacity duration-500 ease-in-out ${
-              isOpen
-                ? "opacity-100 delay-700"
-                : "pointer-events-none opacity-0"
+          {/* Desktop / tablet pill */}
+          <div
+            className={`mt-2 hidden h-12 items-center justify-between overflow-hidden rounded-full border border-line-strong bg-surface text-[18px] transition-[width] duration-800 ease-in-out animate-[jumpIn_0.7s_ease-out_both] sm:flex ${
+              isOpen ? "w-full" : "w-12"
             }`}
           >
-            {SECTIONS.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`/#${id}`}
-                tabIndex={isOpen ? 0 : -1}
-                className={`rounded-full border px-3 py-1 transition-all duration-1000 ease-in-out ${
-                  activeSection === id
-                    ? "border-nav bg-tint text-fg"
-                    : "border-transparent text-muted hover:border-nav hover:bg-tint hover:text-fg"
-                }`}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
+            <button
+              aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen((open) => !open)}
+              className="grid size-12 shrink-0 cursor-pointer place-items-center"
+            >
+              <PanelLeft size={20} />
+            </button>
 
-          <button
-            aria-label={themeLabel}
-            tabIndex={isOpen ? 0 : -1}
-            onClick={toggleTheme}
-            className={`grid size-12 shrink-0 cursor-pointer place-items-center transition-opacity duration-500 ease-in-out ${
-              isOpen
-                ? "opacity-100 delay-700"
-                : "pointer-events-none opacity-0"
-            }`}
-          >
-            <ThemeIcon isDark={isDark} />
-          </button>
-        </div>
+            {/* Stays mounted; fades out instantly-ish on close, fades in after the pill has grown on open */}
+            <nav
+              aria-hidden={!isOpen}
+              className={`flex flex-1 items-center justify-center gap-15 whitespace-nowrap text-[18px] text-muted transition-opacity duration-500 ease-in-out ${
+                isOpen
+                  ? "opacity-100 delay-700"
+                  : "pointer-events-none opacity-0"
+              }`}
+            >
+              {SECTIONS.map(({ id, label }) => (
+                <a
+                  key={id}
+                  href={`/#${id}`}
+                  tabIndex={isOpen ? 0 : -1}
+                  className={` px-3 py-1 transition-all duration-1000 ease-in-out ${
+                    activeSection === id
+                      ? "text-fg"
+                      : "border-transparent text-muted hover:text-fg"
+                  }`}
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
 
-        {/* Mobile: theme + menu buttons, top right */}
-        <div className="mt-2 flex items-center justify-end gap-2 animate-[jumpIn_0.7s_ease-out_both] sm:hidden">
-          <button
-            aria-label={themeLabel}
-            onClick={toggleTheme}
-            className={roundButton}
-          >
-            <ThemeIcon isDark={isDark} />
-          </button>
-          <button
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((open) => !open)}
-            className={roundButton}
-          >
-            {menuOpen ? <X size={20} /> : <PanelLeft size={20} />}
-          </button>
-        </div>
+            <button
+              aria-label={themeLabel}
+              tabIndex={isOpen ? 0 : -1}
+              onClick={toggleTheme}
+              className={`grid size-12 shrink-0 cursor-pointer place-items-center transition-opacity duration-500 ease-in-out ${
+                isOpen
+                  ? "opacity-100 delay-700"
+                  : "pointer-events-none opacity-0"
+              }`}
+            >
+              <ThemeIcon isDark={isDark} />
+            </button>
+          </div>
+
+          {/* Mobile: theme + menu buttons, top right */}
+          <div className="mt-2 flex items-center justify-end gap-2 animate-[jumpIn_0.7s_ease-out_both] sm:hidden">
+            <button
+              aria-label={themeLabel}
+              onClick={toggleTheme}
+              className={roundButton}
+            >
+              <ThemeIcon isDark={isDark} />
+            </button>
+            <button
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMenuOpen((open) => !open)}
+              className={roundButton}
+            >
+              {menuOpen ? <X size={20} /> : <PanelLeft size={20} />}
+            </button>
+          </div>
         </div>
       </header>
 

@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./CustomCursor.css";
 
-// Over these, the star steps aside and the normal pointer shows.
-// Keep in sync with the :is(...) list in CustomCursor.css
+// Over these, the arrow turns into the hand pointer.
 const CLICKABLE =
   'a, button, [role="button"], label, select, summary, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"], [class*="cursor-pointer"]';
 
@@ -13,11 +12,11 @@ const TEXT_FIELD =
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 
 /**
- * A twinkling star cursor with a calm click splash.
+ * A hollow arrow cursor with a calm click splash.
  * Render it once near the root of the app, outside <Routes>.
  *
- * - The star only replaces the system cursor on devices with a real mouse.
- * - Over links, buttons and Minggoy it fades out and the normal pointer shows.
+ * - The arrow only replaces the system cursor on devices with a real mouse.
+ * - Over links, buttons and Minggoy it turns into a hollow hand pointer.
  * - Over text fields the normal text cursor shows.
  * - The click splash also works on touch screens.
  * - Everything respects "reduce motion".
@@ -79,7 +78,7 @@ function CalmCursor() {
 
     window.addEventListener("pointerdown", onPointerDown, true);
 
-    /* Star cursor (mouse devices only) --------------------------------- */
+    /* Arrow cursor (mouse devices only) -------------------------------- */
     let raf = 0;
     let removeMouse = () => {};
 
@@ -100,21 +99,16 @@ function CalmCursor() {
         my = e.clientY;
         cur.classList.add("calm-visible");
 
-        // Step aside over clickables and text fields
+        // Hand over clickables, normal text cursor over text fields
         const target = e.target as Element | null;
         const inText = !!target?.closest(TEXT_FIELD);
         const inClickable = !inText && !!target?.closest(CLICKABLE);
         cur.classList.toggle("is-text", inText);
         cur.classList.toggle("is-hover", inClickable);
 
-        // Leave a speck of stardust every so often (not while the pointer shows).
+        // Leave a speck of stardust every so often (not over text fields).
         // Its strength is set in calm-dust in the CSS file.
-        if (
-          !reduce &&
-          !inText &&
-          !inClickable &&
-          Math.hypot(mx - lastDustX, my - lastDustY) > 26
-        ) {
+        if (!reduce && !inText && Math.hypot(mx - lastDustX, my - lastDustY) > 26) {
           lastDustX = mx;
           lastDustY = my;
 
@@ -169,8 +163,18 @@ function CalmCursor() {
       <div className="calm-scale">
         <svg viewBox="0 0 24 24" focusable="false">
           <path
-            d="M12 0 C12.8 7.5 16.5 11.2 24 12 C16.5 12.8 12.8 16.5 12 24 C11.2 16.5 7.5 12.8 0 12 C7.5 11.2 11.2 7.5 12 0 Z"
-            style={{ fill: "rgb(var(--star))" }}
+            className="calm-arrow"
+            d="M3 3 L10.5 21 L13 13 L21 10.5 Z"
+          />
+        </svg>
+      </div>
+
+      {/* Hand pointer, shown over anything clickable */}
+      <div className="calm-hand">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path
+            className="calm-hand-shape"
+            d="M7.5 13.5 L7.5 4.2 A1.8 1.8 0 0 1 11.1 4.2 L11.1 9.2 A1.8 1.8 0 0 1 14.7 9.2 L14.7 10.2 A1.8 1.8 0 0 1 18.3 10.2 L18.3 11.2 A1.6 1.6 0 0 1 21.5 11.2 L21.5 15 C21.5 19 18.5 21.5 15 21.5 L12.5 21.5 C10.2 21.5 8.6 20.7 7.3 19.4 L3.9 15.9 A1.6 1.6 0 0 1 6.2 13.6 Z"
           />
         </svg>
       </div>
