@@ -148,7 +148,7 @@ function ProjectCard({ project }: { project: Project }) {
             </ul>
           </div>
 
-                    <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <p className="text-[14px] text-label">Tech Stack</p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (

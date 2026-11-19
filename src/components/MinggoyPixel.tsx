@@ -23,7 +23,7 @@ const MILESTONES: Milestone[] = [
   {
     at: 25,
     image: shookMinggoy2,
-    alt: "Minggoy declaring an invasion",
+    alt: "Minggoy stare",
   },
   {
     at: 40,
@@ -33,7 +33,7 @@ const MILESTONES: Milestone[] = [
   {
     at: 55,
     image: seriousMinggoy,
-    alt: "Minggoy collecting payment",
+    alt: "Minggoy curious",
   },
   {
     at: 80,
@@ -43,7 +43,7 @@ const MILESTONES: Milestone[] = [
   {
     at: 100,
     image: shookMinggoy,
-    alt: "Minggoy acknowledging your dedication",
+    alt: "Minggoy shook",
   },
 ];
 
@@ -571,7 +571,7 @@ function PixelCat() {
             bottom: CAT_H + 2 + POPOVER_GAP,
           }}
         >
-          <p className="pr-8 text-[12px] font-bold text-accent">Minggoy</p>
+          <p className="pr-8 text-[14px] font-bold text-accent">Minggoy</p>
 
           <img
             src={speech.milestone.image}
