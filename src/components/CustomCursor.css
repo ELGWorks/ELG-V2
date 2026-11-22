@@ -6,10 +6,12 @@
   --glow: 90, 160, 232;
   --core: 160, 205, 245;
 
-  --arrow: 38, 119, 192;       /* Blue border */
+  --arrow: 38, 119, 192; /* Blue border */
   --cursor-fill: 255, 255, 255; /* White body */
 }
-
+.calm-cursor:not(.calm-visible) {
+  transition-duration: 0.2s;
+}
 /* Dark mode */
 html.dark,
 html[data-theme="dark"] {
@@ -17,7 +19,7 @@ html[data-theme="dark"] {
   --glow: 74, 157, 224;
   --core: 255, 255, 255;
 
-  --arrow: 255, 255, 255;       /* White border */
+  --arrow: 255, 255, 255; /* White border */
   --cursor-fill: 74, 157, 224; /* Blue fill */
 }
 
@@ -29,7 +31,18 @@ html[data-theme="dark"] {
   }
 
   /* Over text fields the normal text cursor shows. Keep in sync with TEXT_FIELD in the .tsx */
-  html.has-calm-cursor :is(input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"], [type="range"]), textarea, [contenteditable="true"]) {
+  html.has-calm-cursor
+    :is(
+      input:not(
+        [type="button"],
+        [type="submit"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="range"]
+      ),
+      textarea,
+      [contenteditable="true"]
+    ) {
     cursor: text !important;
   }
 }
@@ -140,7 +153,8 @@ html[data-theme="dark"] {
   }
   100% {
     opacity: 0;
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+      scale(0.2);
   }
 }
 
@@ -189,7 +203,16 @@ html[data-theme="dark"] {
 
 .calm-flash,
 .calm-mini {
-  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  clip-path: polygon(
+    50% 0,
+    60% 40%,
+    100% 50%,
+    60% 60%,
+    50% 100%,
+    40% 60%,
+    0 50%,
+    40% 40%
+  );
 }
 
 @keyframes calm-flash {
@@ -211,7 +234,8 @@ html[data-theme="dark"] {
 .calm-mini {
   opacity: 0;
   transform: translate(-50%, -50%);
-  animation: calm-drift var(--life) cubic-bezier(0.16, 1, 0.3, 1) var(--delay) forwards;
+  animation: calm-drift var(--life) cubic-bezier(0.16, 1, 0.3, 1) var(--delay)
+    forwards;
 }
 .calm-speck {
   border-radius: 50%;
@@ -227,7 +251,8 @@ html[data-theme="dark"] {
   }
   100% {
     opacity: 0;
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.35);
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+      scale(0.35);
   }
 }
 
