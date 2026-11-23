@@ -52,7 +52,7 @@ function ViewFullBioPage() {
             />
           </div>
 
-          <div className="flex min-w-0 flex-col items-center gap-8 text-center text-[16px] animate-[jumpIn_0.7s_ease-out_0.15s_both] md:flex-1 md:items-start md:gap-15 md:text-left md:text-[18px]">
+          <div className="flex min-w-0 flex-col items-center gap-8 text-center text-[16px] animate-[jumpIn_0.7s_ease-out_0.15s_both] md:flex-1 md:items-start md:gap-8 md:text-left md:text-[18px]">
             <p>
               I graduated last August, 2025 under Computer Science. Currently, I
               am focusing on web development with the goal of building

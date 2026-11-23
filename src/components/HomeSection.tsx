@@ -64,13 +64,14 @@ function HomeSection() {
             </Link>
           </div>
 
-          <button
-            aria-label="Send an email"
-            className="flex w-fit cursor-pointer items-center gap-1.5 rounded-[50px] border border-accent px-4 pt-2.5 pb-2 text-[16px] font-bold text-accent transition-colors duration-600 ease-in-out hover:bg-accent hover:text-on-accent"
-          >
-            <Send size={20} />
-            Say hi!
-          </button>
+          <a
+  href="mailto:emmanuellouisegonzales@gmail.com"
+  aria-label="Send an email"
+  className="flex w-fit cursor-pointer items-center gap-1.5 rounded-[50px] border border-accent px-4 pt-2.5 pb-2 text-[16px] font-bold text-accent transition-colors duration-600 ease-in-out hover:bg-accent hover:text-on-accent"
+>
+  <Send size={20} />
+  Say hi!
+</a>
         </div>
       </div>
     </section>
